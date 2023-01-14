@@ -87,9 +87,10 @@ def saveOutputImage(imageData):
       sys.exit(0)
    lengthImageData = len(imageData)
    for k in range(lengthImageData):
-      if (((k % 16) == 0) and (k != 0)):
+      if (((k % 12) == 0) and (k != 0)):
          export.write("\n")
       export.write(imageData[k])
+      export.write(", ")
    export.close()
    return(True)
 
@@ -239,13 +240,13 @@ def main():
    SAVE = True
    BAUDRATE = 115200
    PORT = "COM6"  # CHANGE THIS
-   RATELIMIT = False
+   RATELIMIT = False 
 
    # inputs
    IMAGEVIDEO = input("Are you inputting a image or video (Video = 1, Image = 0): ")
    VIDEO_PATH = input("Input video/image path: ")
-   HEIGHT_SETTING = input("What is your desired output frame height (480p = 0, 720p = 1, 1080p = 2, 1440p = 3): ")
-   DISPLAY_RATIO = input("What is the display ratio (4:3 = 0, 16:9 = 1, Same as File = 2): ")
+   HEIGHT_SETTING = str(input("What is your desired output frame height (480p = 0, 720p = 1, 1080p = 2, 1440p = 3): "))
+   DISPLAY_RATIO = str(input("What is the display ratio (4:3 = 0, 16:9 = 1, Same as File = 2): "))
    if (IMAGEVIDEO == "1"):
       INTERLACE = input("Is the should the output be interlaced (Video only) (Yes = 1, No = 0): ")
    else:
@@ -271,8 +272,8 @@ def main():
    HEIGHT, WIDTH = determineWidth(HEIGHT_SETTING, DISPLAY_RATIO)
 
    # DIMENSIONS OVERRIDE
-   # HEIGHT = 240
-   # WIDTH = 240
+   #HEIGHT = 240
+   #WIDTH = 320
    # FRAME_COUNT = 32
 
    # check for video/image file
